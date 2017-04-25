@@ -1,0 +1,16 @@
+Feature: User login
+  As a visitor
+  In order to login to a portal
+  I must be able to provide credentials
+
+  Background: User is on login page
+    Given I am on "user/login"
+
+  @javascript
+  Scenario: Successful login
+    When I fill in the following:
+      | Username | anshul |
+      | Password | anshul |
+    And I press "Log in"
+    Then I should see "anshul.jain@fluke.com"
+    

@@ -1,0 +1,67 @@
+@javascript
+Feature: Testing Igcommerce Site
+Scenario: Existence of word in one region 
+  Given I am on "/en-us/user"
+  When I fill in the following:
+    | Username | arindom |
+    | Password | arindom |
+  And I press "Log in"
+  And I click "Home"
+  Then I should see "Support" in the "navigation" region
+
+ Scenario: CTA Button on home page slider
+	Given I am on "/en-us"
+  When I click "Learn more" in the "main" region
+  Then I set main window name
+  Then I switch back to main window
+
+ Scenario: Existence of "calibration services" word on support page 
+  Given I am on "/en-us"
+  When I click "Support" in the "navigation" region
+  Then I should see the link "Calibration services" in the "panel_right" region
+
+Scenario: Search functionality 
+  Given I am on "/en-us"
+  When I fill hidden field "edit-search-block-form--2" with "fluke"
+  And I Press hidden submit "edit-submit"
+  Then I should see the text "Fluke Resource Search" in the "panel_right" region
+
+Scenario: Expand of "Application" button from left nav on solution page
+  Given I am on "/en-us"
+  When I click "Solution" in the "navigation" region
+  And I click href "#collapse-1663"
+  Then I should see the link "Fluid systems" in the "panel_left" region
+
+Scenario: Hover on "Solution" and see "Applications"
+  Given I am on "/en-us"
+  When I hover over ".top-lvl-solutions"
+  Then I should see the link "Applications" in the "navigation" region
+
+Scenario: See content list
+  Given I am on "/en-us/user"
+  When I fill in the following:
+    | Username | arindom |
+    | Password | arindom |
+  And I press "Log in"
+  And I go to "/en-us/admin/content"
+  Then I should see the text "Title"
+
+Scenario: All the content should get checked with the message “Selected 50 rows in this page” at the top.
+  Given I am on "/en-us/user"
+  And I fill in "anshul" for "edit-name"
+  And I fill in "anshul" for "edit-pass"
+  Then I press "Log in"
+  And I go to "/en-us/admin/content"  
+  Then I fill in the search box with "vbo-table-select-all"
+  And I should see "Selected 50 rows in this page"
+
+Scenario: Content “TOC - Clamp Meters for product” should be filtered out from the list
+  Given I am on "/en-us/user"
+  And I fill in "anshul" for "edit-name"
+  And I fill in "anshul" for "edit-pass"
+  Then I press "Log in"
+  And I go to "/en-us/admin/content"  
+  When I fill in "TOC - Clamp Meters for product" for "edit-title"
+  And I press "Apply"
+  Then I should see "TOC - Clamp Meters for product"
+  And I wait for 10 seconds
