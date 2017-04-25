@@ -1,6 +1,6 @@
 {
     "require": {
-        "drush/drush": "7.*",
+        "drush/drush": "^8.1",
         "pantheon-systems/terminus": "^1.2",
         "kolev/multilingual-extension": "dev-master",
         "behat/environment-loader": "1.*",
